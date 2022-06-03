@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload</title>
+</head>
+<body>
+<h1>Upload</h1>
+<form action="/UploadProduct" method="POST">
+
+    <div class="form-group">
+        <label>Chose your Product</label>
+    <select name="product">
+        <option value="cd">CD</option>
+        <option value="book">Book</option>
+    </select>
+    </div>
+
+    <div class="form-group">
+        <label for="ProductName">Product Name:</label>
+        <input type="text" class="form-control" name="productname" id="ProductName">
+    </div>
+    <div class="form-group">
+        <label for="Price">Price:</label>
+        <input type="text" class="form-control" name="price" id="Price">
+    </div>
+
+    <div class="form-group">
+        <label for="Description">Description:</label>
+        <input type="text" class="form-control" name="description" id="Description">
+    </div>
+
+    <div class="form-group">
+        <label for="Img">Select image:</label>
+        <input type="file" id="Img" name="img" accept="image/*">
+    </div>
+    <div class="form-group">
+        <label for="UserName">UserName</label>
+        <input type="text" class="form-control" name="username" id="UserName">
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn bt-primary">Upload</button>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tbody>
+    {% for i in CDlist %}
+        <h1>Product Name: {{ i.ProductName }}</h1>
+        <b>Price : {{ i.Price }}</b>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

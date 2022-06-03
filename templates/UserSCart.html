@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <tbody>
+    {% for i in ProductList %}
+        <h1>Product Name: {{ i.ProductName }}</h1>
+        <b>Price : {{ i.ProductPrice }}</b>
+    {% endfor %}
+    </tbody>
+    <p></p><a href="{{ url_for('home',username=username) }}">Home</a>
+</body>
+</html>

@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="no-js">
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# product: http://ogp.me/ns/product#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>書店</title>
+    <meta name="csrf-param" content="authenticity_token"/>
+    <meta name="csrf-token"
+          content="YBOz0Fa6Pq7fuxazfBtx5zFXptj9dFknqDoTP2eeBu95fULUrYEvpYMODRey1w7lWfUhSfZW0Gv193Vhh3yyew=="/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/logo-simple.png">
+    <link rel="manifest" href="/manifest.json">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" media="all"
+          href="https://cf-www.tenlong.com.tw/assets/application-2979dc7c96516cafdb20a887fcc6a7881bc62096cdad4ca2eaa095d9bf0fab06.css"/>
+
+    <script
+            src="https://cf-www.tenlong.com.tw/assets/application-0ad8fcd740aaa70862c7ed449bf3d27ae7f55d2b6bd29a2924be8ec2339c4a72.js"></script>
+    <link rel="stylesheet" media="screen" href="https://cf-www.tenlong.com.tw/packs/css/application-f2749583.css"/>
+    <script src="https://cf-www.tenlong.com.tw/packs/js/application-6cdf20a78029f6b03d6b.js"></script>
+
+    <noscript><img height="1" width="1" style="display:none"
+                   src="https://www.facebook.com/tr?id=557213394477621&ev=PageView&noscript=1"/></noscript>
+
+
+</head>
+
+<!-- 節慶造型背景
+<body class="bg-fixed bg-cover" style="background-image: url(/images/background_02.jpg)">
+-->
+
+<body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+<div class="hidden bg-gray-900 bg-opacity-75 w-full h-full z-50 flex justify-center items-center " id="key-event">
+    <div class="top-search rounded-xl bg-white w-2/3 mx-auto p-4 flex-col justify-center items-center"
+         id="key-event-search">
+        <button class="key-esc btn-1" id="key-esc">ESC</button>
+        <div class="w-5/6 m-6 mx-auto">
+            <form action="/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden"
+                                                                              value="&#x2713;"/>
+                <input type="text" name="keyword" id="keyword" class="input-text w-full" placeholder="想找找什麼呢？"/>
+                <input type="hidden" name="sort" id="sort"/>
+                <input type="hidden" name="display" id="display"/>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W3N997" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="blur-bg">
+
+    <nav class="center-container">
+        <nav class="grid grid-cols-12 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-800 w-full items-center">
+
+            <div>
+
+            </div>
+            <div class="top-search col-span-6 relative">
+                <form action="/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden"
+                                                                                  value="&#x2713;"/>
+                    <input type="text" name="keyword" id="keyword" class="input-text w-full"/>
+                    <div class="quick-search hidden lg:flex absolute top-0 right-0 p-1 mr-8">
+                        <img class="h-6 mx-1 mt-1" src="../images/quicksearch03.png" alt="">
+                    </div>
+                    <button class="top-search-btn absolute right-0 border-collapse p-2">
+                        <img class="h-5 mx-1" src="../images/search-button02.png" alt="">
+                    </button>
+                </form>
+            </div>
+
+
+            <ul class="right-menu col-span-4 sm:col-span-3 flex justify-evenly text-white">
+
+                <div class="side-menu-bg"></div>
+                <button
+                        class="member-close-btn hidden focus:outline-none hover:bg-blue-600 text-lg btn-position cursor-pointer text-gray-500 rounded border border-solid border-tl_blue bg-tl_blue w-10 h-10 leading-10">
+                    Xx
+                </button>
+                <li class="alternative-main-menu">
+                    <a href="#">
+                        <i class="fa fa-bars"></i>
+                        <span class="hide"></span>
+                    </a>
+                </li>
+                <li class="log-in">
+                    <a href="{{ url_for('login') }}">
+                        <i class="fa fa-user-plus"></i>
+                        <span class="hidden xl:inline-block">會員登入</span>
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="{{ url_for('ShoppingCart',username=username) }}">
+                        <span class="hidden sm:inline-block"><i class="fa fa-shopping-cart "></i></span>
+                        <i class="cart-quantity text-white">0</i>
+                        <span class="hidden xl:inline-block">購物車</span>
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+    </nav>
+
+    <nav
+            class="top-nav hidden xl:flex justify-center items-start bg-gradient-to-b from-gray-800 via-gray-800 to-gray-800 text-gray-300 w-full">
+        <ul class="main-menu">
+            <li>
+                <a href="#">
+                    <span>分類</span>
+                </a>
+                <ul class="category-list text-tl_blue">
+                    <li><a href="/categories">CD</a></li>
+                    <li><a href="/categories/data-science">書籍</a></li>
+
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <nav class="bg-gray-800 text-white hidden sm:block">
+        <div class="keywords-list flex justify-center items-center p-1 text-xs sm:text-sm overflow-x-auto">
+            <div class="mr-4"><a href="">最新上架</a></div>
+            <div class="mr-4"><a href="">熱門商品</a></div>
+            <div class="mr-4"><a href="">最新活動</a></div>
+        </div>
+    </nav>
+    <div class="w-11/12 mt-2 mx-auto">
+    </div>
+
+    <div class="xl:w-11/12 mx-auto">
+    </div>
+
+
+    <div class="center-container">
+        <div class="w-full sm:w-11/12 mx-auto">
+            <div class="content-wrapper">
+
+
+                <div class="content">
+                    <article>
+                        <section>
+                            <h1>
+                                特殊活動
+                            </h1>
+
+
+                            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active" data-bs-interval="1000">
+                                        <img src="images/a.jpg" class="d-block" alt="...">
+                                    </div>
+                                    <div class="carousel-item " data-bs-interval="1000">
+                                        <img src="images/b.png" class="d-block" alt="...">
+                                    </div>
+                                    <div class="carousel-item ">
+                                        <img src="images/c.jpg" class="d-block" alt="...">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+
+
+                        </section>
+                        <section class="event-desc">
+
+                        </section>
+
+                    </article>
+
+                    <section>
+                        <tbody>
+                            {% for i in AllProduct %}
+                                <h1>Product Name: {{ i.ProductName }}</h1>
+                                <b>Price : {{ i.Price }}</b>
+                                <b>owner : {{ i.username }}
+                            {% endfor %}
+                        </tbody>
+
+                        <h2>活動書籍</h2>
+                        <div class="book-list book-list-event">
+                            <div class="book-filter">
+                                <div class="order">
+                                    排序：
+                                    <div class="filter-item-wrapper">
+
+                                        <a class="selected" href="/events/itmonth-drmaster">熱門推薦</a>
+
+                                        <a class="" href="/events/itmonth-drmaster?sort=bestselling">銷售排行</a>
+
+                                        <a class="" href="/events/itmonth-drmaster?sort=date">出版日期</a>
+                                    </div>
+                                </div>
+                                <div class="stock">
+                                    庫存：
+                                    <div class="filter-item-wrapper">
+                                        <a class="" href="/events/itmonth-drmaster?stock=buyable">可購買商品</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-wrapper">
+                                <ul>
+
+                                    <li class="single-book">
+                                        <a class="cover"
+                                           href="/products/1">
+
+                                            <img alt="在 React 生態圈打滾的一年 feat.TypeScript（iT邦幫忙鐵人賽系列書）-cover"
+                                                 src="https://cf-assets2.tenlong.com.tw/products/images/000/154/285/medium/MP22030.jpg?1604386005"/>
+
+                                            <span class="label-red">5折</span>
+
+
+                                        </a>
+                                        <div class="pricing">
+                                            <del>$550</del>
+
+                                            $275
+                                            <form class="button_to" method="post"
+                                                  action="/cart?id=9789864345335&amp;list_name=e-itmonth-drmaster">
+                                                <button
+                                                        class="add-to-cart ml-1 px-2 rounded text-tl_blue hover:text-white hover:bg-tl_blue bg-gray-200"
+                                                        type="submit">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </button>
+                                                <input type="hidden" name="authenticity_token"
+                                                       value="82u8PHCwqNkl5bMmn/USsRzRfD/F/4/yaZxE2t7p1yh+svmrPW7Rn3S/0qnKor3aHccOsRJHN8AMkmgnzIW5wA=="/>
+                                            </form>
+                                        </div>
+
+                                        <strong class="title">
+                                            <a title="在 React 生態圈打滾的一年 feat.TypeScript（iT邦幫忙鐵人賽系列書）"
+                                               href="/products/9789864345335?list_name=e-itmonth-drmaster">在 React
+                                                生態圈打滾的一年 feat.TypeScript（iT邦幫忙鐵人賽系列書）</a>
+                                        </strong>
+                                    </li>
+
+                                    <li class="single-book">
+                                        <a class="cover"
+                                           href="/products/9789864345328?list_name=e-itmonth-drmaster">
+
+                                            <img alt="IoT 沒那麼難！新手用 JavaScript 入門做自己的玩具！（iT邦幫忙鐵人賽系列書）-cover"
+                                                 src="https://cf-assets2.tenlong.com.tw/products/images/000/154/394/medium/9789864345328_bc.jpg?1604893154"/>
+
+                                            <span class="label-red">5折</span>
+
+
+                                        </a>
+                                        <div class="pricing">
+                                            <del>$520</del>
+
+                                            $260
+                                            <form class="button_to" method="post"
+                                                  action="/cart?id=9789864345328&amp;list_name=e-itmonth-drmaster">
+                                                <button
+                                                        class="add-to-cart ml-1 px-2 rounded text-tl_blue hover:text-white hover:bg-tl_blue bg-gray-200"
+                                                        type="submit">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </button>
+                                                <input type="hidden" name="authenticity_token"
+                                                       value="nNZ11RkotDoemgfDaFg2sueKjVsAuYCZsu3OCOSrh0kRDzBCVPbNfE/AZkw9D5nZ5pz/1dcBOKvX4+L19sfpoQ=="/>
+                                            </form>
+                                        </div>
+
+                                        <strong class="title">
+                                            <a title="IoT 沒那麼難！新手用 JavaScript 入門做自己的玩具！（iT邦幫忙鐵人賽系列書）"
+                                               href="/products/9789864345328?list_name=e-itmonth-drmaster">IoT
+                                                沒那麼難！新手用 JavaScript 入門做自己的玩具！（iT邦幫忙鐵人賽系列書）</a>
+                                        </strong>
+                                    </li>
+
+                                    <li class="single-book">
+                                        <a class="cover"
+                                           href="/products/9789864345311?list_name=e-itmonth-drmaster">
+
+                                            <img alt="和艦長一起 30 天玩轉 GitLab（iT邦幫忙鐵人賽系列書）-cover"
+                                                 src="https://cf-assets2.tenlong.com.tw/products/images/000/153/887/medium/9789864345311.jpg?1603433542"/>
+
+                                            <span class="label-red">5折</span>
+
+
+                                        </a>
+                                        <div class="pricing">
+                                            <del>$500</del>
+
+                                            $250
+                                            <form class="button_to" method="post"
+                                                  action="/cart?id=9789864345311&amp;list_name=e-itmonth-drmaster">
+                                                <button
+                                                        class="add-to-cart ml-1 px-2 rounded text-tl_blue hover:text-white hover:bg-tl_blue bg-gray-200"
+                                                        type="submit">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </button>
+                                                <input type="hidden" name="authenticity_token"
+                                                       value="AioqYtWca9pnMqEkFnku3KUSCM7cRGiZE6kFyjueZuOP82/1mEISnDZowKtDLoG3pAR6QAv80Kt2pyk3KfIICw=="/>
+                                            </form>
+                                        </div>
+
+                                        <strong class="title">
+                                            <a title="和艦長一起 30 天玩轉 GitLab（iT邦幫忙鐵人賽系列書）"
+                                               href="/products/9789864345311?list_name=e-itmonth-drmaster">和艦長一起 30
+                                                天玩轉 GitLab（iT邦幫忙鐵人賽系列書）</a>
+                                        </strong>
+                                    </li>
+
+                                    <li class="single-book">
+                                        <a class="cover"
+                                           href="/products/9789864345083?list_name=e-itmonth-drmaster">
+
+                                            <img alt="從 Hooks 開始，讓你的網頁 React 起來（iT邦幫忙鐵人賽系列書）-cover"
+                                                 src="https://cf-assets2.tenlong.com.tw/products/images/000/152/373/medium/MP22021.jpg?1599472731"/>
+
+                                            <span class="label-blue">78折</span>
+
+
+                                        </a>
+                                        <div class="pricing">
+                                            <del>$680</del>
+
+                                            $530
+                                            <form class="button_to" method="post"
+                                                  action="/cart?id=9789864345083&amp;list_name=e-itmonth-drmaster">
+                                                <button
+                                                        class="add-to-cart ml-1 px-2 rounded text-tl_blue hover:text-white hover:bg-tl_blue bg-gray-200"
+                                                        type="submit">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </button>
+                                                <input type="hidden" name="authenticity_token"
+                                                       value="V6U4vQu9J6sow+8BjxBXkoN2I1pEw8NCmQzqG1Y4ubHafH0qRmNe7XmZjo7aR/j5gmBR1JN7e3D8AsbmRFTXWQ=="/>
+                                            </form>
+                                        </div>
+
+                                        <strong class="title">
+                                            <a title="從 Hooks 開始，讓你的網頁 React 起來（iT邦幫忙鐵人賽系列書）"
+                                               href="/products/9789864345083?list_name=e-itmonth-drmaster">從 Hooks
+                                                開始，讓你的網頁 React 起來（iT邦幫忙鐵人賽系列書）</a>
+                                        </strong>
+                                    </li>
+
+                                    <li class="single-book">
+                                        <a class="cover"
+                                           href="/products/9789864345076?list_name=e-itmonth-drmaster">
+
+                                            <img alt="新手村逃脫！初心者的 Python 機器學習攻略（iT邦幫忙鐵人賽系列書）-cover"
+                                                 src="https://cf-assets2.tenlong.com.tw/products/images/000/151/432/medium/9789864345076_bc.jpg?1597118276"/>
+
+                                            <span class="label-red">5折</span>
+
+
+                                        </a>
+                                        <div class="pricing">
+                                            <del>$500</del>
+
+                                            $250
+                                            <form class="button_to" method="post"
+                                                  action="/cart?id=9789864345076&amp;list_name=e-itmonth-drmaster">
+                                                <button
+                                                        class="add-to-cart ml-1 px-2 rounded text-tl_blue hover:text-white hover:bg-tl_blue bg-gray-200"
+                                                        type="submit">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </button>
+                                                <input type="hidden" name="authenticity_token"
+                                                       value="wcB7mO4w5E1abnw7Lg+c5XZFFM7zImHQEmX+GK7/IaNMGT4Po+6dCws0HbR7WDOOd1NmQCSa2eJ3a9LlvJNPSw=="/>
+                                            </form>
+                                        </div>
+
+                                        <strong class="title">
+                                            <a title="新手村逃脫！初心者的 Python 機器學習攻略（iT邦幫忙鐵人賽系列書）"
+                                               href="/products/9789864345076?list_name=e-itmonth-drmaster">新手村逃脫！初心者的
+                                                Python 機器學習攻略（iT邦幫忙鐵人賽系列書）</a>
+                                        </strong>
+                                    </li>
+
+                                    <li class="single-book">
+                                        <a class="cover"
+                                           href="/products/9789864345007?list_name=e-itmonth-drmaster">
+
+                                            <img alt="Towards Tensorflow 2.0：無痛打造AI模型（iT邦幫忙鐵人賽系列書）-cover"
+                                                 src="https://cf-assets2.tenlong.com.tw/products/images/000/149/885/medium/MP22014.jpg?1593500463"/>
+
+                                            <span class="label-red">5折</span>
+
+
+                                        </a>
+                                        <div class="pricing">
+                                            <del>$500</del>
+
+                                            $250
+                                            <form class="button_to" method="post"
+                                                  action="/cart?id=9789864345007&amp;list_name=e-itmonth-drmaster">
+                                                <button
+                                                        class="add-to-cart ml-1 px-2 rounded text-tl_blue hover:text-white hover:bg-tl_blue bg-gray-200"
+                                                        type="submit">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </button>
+                                                <input type="hidden" name="authenticity_token"
+                                                       value="l1gs6SOIqdrdkdWu1cr2uh1PllFnWVu2BA63sEjs9qgagWl+blbQnIzLtCGAnVnRHFnk37Dh44RhAJtNWoCYQA=="/>
+                                            </form>
+                                        </div>
+
+                                        <strong class="title">
+                                            <a title="Towards Tensorflow 2.0：無痛打造AI模型（iT邦幫忙鐵人賽系列書）"
+                                               href="/products/9789864345007?list_name=e-itmonth-drmaster">Towards
+                                                Tensorflow 2.0：無痛打造AI模型（iT邦幫忙鐵人賽系列書）</a>
+                                        </strong>
+                                    </li>
+
+                                    <li class="single-book">
+                                        <a class="cover"
+                                           href="/products/9789864344994?list_name=e-itmonth-drmaster">
+
+                                            <img alt="金魚都能懂的 CSS 選取器：金魚都能懂了你還怕學不會嗎（iT邦幫忙鐵人賽系列書）-cover"
+                                                 src="https://cf-assets2.tenlong.com.tw/products/images/000/149/880/medium/MP22010.jpg?1593488759"/>
+
+                                            <span class="label-blue">78折</span>
+
+
+                                        </a>
+                                        <div class="pricing">
+                                            <del>$560</del>
+
+                                            $437
+                                            <form class="button_to" method="post"
+                                                  action="/cart?id=9789864344994&amp;list_name=e-itmonth-drmaster">
+                                                <button
+                                                        class="add-to-cart ml-1 px-2 rounded text-tl_blue hover:text-white hover:bg-tl_blue bg-gray-200"
+                                                        type="submit">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </button>
+                                                <input type="hidden" name="authenticity_token"
+                                                       value="Z836uH6JTs1/gwJo5Ur8RnLIztH27p74MCCJLq9gKTvqFL8vM1c3iy7ZY+ewHVMtc968XyFWJspVLqXTvQxH0w=="/>
+                                            </form>
+                                        </div>
+
+                                        <strong class="title">
+                                            <a title="金魚都能懂的 CSS 選取器：金魚都能懂了你還怕學不會嗎（iT邦幫忙鐵人賽系列書）"
+                                               href="/products/9789864344994?list_name=e-itmonth-drmaster">金魚都能懂的
+                                                CSS 選取器：金魚都能懂了你還怕學不會嗎（iT邦幫忙鐵人賽系列書）</a>
+                                        </strong>
+                                    </li>
+
+                                    <li class="single-book">
+                                        <a class="cover"
+                                           href="/products/9789864344901?list_name=e-itmonth-drmaster">
+
+                                            <img alt="Android TDD 測試驅動開發：從 UnitTest、TDD 到 DevOps 實踐 （iT邦幫忙鐵人賽系列書）-cover"
+                                                 src="https://cf-assets2.tenlong.com.tw/products/images/000/148/535/medium/MP22017.jpg?1590378445"/>
+
+                                            <span class="label-red">66折</span>
+
+
+                                        </a>
+                                        <div class="pricing">
+                                            <del>$550</del>
+
+                                            $363
+                                            <form class="button_to" method="post"
+                                                  action="/cart?id=9789864344901&amp;list_name=e-itmonth-drmaster">
+                                                <button
+                                                        class="add-to-cart ml-1 px-2 rounded text-tl_blue hover:text-white hover:bg-tl_blue bg-gray-200"
+                                                        type="submit">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </button>
+                                                <input type="hidden" name="authenticity_token"
+                                                       value="MXWVy26oB8KTrwGpL2GODHrqFoNB69QtdDxIFYJGQj28rNBcI3Z+hML1YCZ6NiFne/xkDZZTbB8RMmTokCos1Q=="/>
+                                            </form>
+                                        </div>
+
+                                        <strong class="title">
+                                            <a title="Android TDD 測試驅動開發：從 UnitTest、TDD 到 DevOps 實踐 （iT邦幫忙鐵人賽系列書）"
+                                               href="/products/9789864344901?list_name=e-itmonth-drmaster">Android
+                                                TDD 測試驅動開發：從 UnitTest、TDD 到 DevOps 實踐 （iT邦幫忙鐵人賽系列書）</a>
+                                        </strong>
+                                    </li>
+
+                                    <li class="single-book">
+                                        <a class="cover"
+                                           href="/products/9789864344895?list_name=e-itmonth-drmaster">
+
+                                            <img alt="讓 TypeScript 成為你全端開發的 ACE！（iT邦幫忙鐵人賽系列書）-cover"
+                                                 src="https://cf-assets2.tenlong.com.tw/products/images/000/148/371/medium/MP22016.jpg?1589790093"/>
+
+                                            <span class="label-red">7折</span>
+
+
+                                        </a>
+                                        <div class="pricing">
+                                            <del>$650</del>
+
+                                            $455
+                                            <form class="button_to" method="post"
+                                                  action="/cart?id=9789864344895&amp;list_name=e-itmonth-drmaster">
+                                                <button
+                                                        class="add-to-cart ml-1 px-2 rounded text-tl_blue hover:text-white hover:bg-tl_blue bg-gray-200"
+                                                        type="submit">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </button>
+                                                <input type="hidden" name="authenticity_token"
+                                                       value="gR7VARpHbr4BVkmj+Kr3sj8rKxbFDZbfNzBBfvUPOjoMx5CWV5kX+FAMKCyt/VjZPj1ZmBK1Lu1SPm2D52NU0g=="/>
+                                            </form>
+                                        </div>
+
+                                        <strong class="title">
+                                            <a title="讓 TypeScript 成為你全端開發的 ACE！（iT邦幫忙鐵人賽系列書）"
+                                               href="/products/9789864344895?list_name=e-itmonth-drmaster">讓
+                                                TypeScript 成為你全端開發的 ACE！（iT邦幫忙鐵人賽系列書）</a>
+                                        </strong>
+                                    </li>
+
+                                    <li class="single-book">
+                                        <a class="cover"
+                                           href="/products/9789864344130?list_name=e-itmonth-drmaster">
+
+                                            <img alt="0 陷阱！0 誤解！8 天重新認識 JavaScript！（iT邦幫忙鐵人賽系列書）-cover"
+                                                 src="https://cf-assets2.tenlong.com.tw/products/images/000/139/636/medium/MP21913.jpg?1566291641"/>
+
+                                            <span class="label-blue">78折</span>
+
+
+                                        </a>
+                                        <div class="pricing">
+                                            <del>$550</del>
+
+                                            $429
+                                            <form class="button_to" method="post"
+                                                  action="/cart?id=9789864344130&amp;list_name=e-itmonth-drmaster">
+                                                <button
+                                                        class="add-to-cart ml-1 px-2 rounded text-tl_blue hover:text-white hover:bg-tl_blue bg-gray-200"
+                                                        type="submit">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </button>
+                                                <input type="hidden" name="authenticity_token"
+                                                       value="O2rm2/uwZ7vdf47koIGgqfVEC57MJKW3hMHXqpFIr+a2s6NMtm4e/Ywl72v11g/C9FJ5EBucHYXhz/tXgyTBDg=="/>
+                                            </form>
+                                        </div>
+
+                                        <strong class="title">
+                                            <a title="0 陷阱！0 誤解！8 天重新認識 JavaScript！（iT邦幫忙鐵人賽系列書）"
+                                               href="/products/9789864344130?list_name=e-itmonth-drmaster">0 陷阱！0
+                                                誤解！8 天重新認識 JavaScript！（iT邦幫忙鐵人賽系列書）</a>
+                                        </strong>
+                                    </li>
+
+                                    <li class="single-book">
+                                        <a class="cover"
+                                           href="/products/9789864343959?list_name=e-itmonth-drmaster">
+
+                                            <img alt="0 門檻！0 負擔！9 天秒懂大數據 &amp; AI 用語（iT邦幫忙鐵人賽系列書）-cover"
+                                                 src="https://cf-assets2.tenlong.com.tw/products/images/000/134/724/medium/MP21911.jpg?1558346682"/>
+
+                                            <span class="label-red">5折</span>
+
+
+                                        </a>
+                                        <div class="pricing">
+                                            <del>$420</del>
+
+                                            $210
+                                            <form class="button_to" method="post"
+                                                  action="/cart?id=9789864343959&amp;list_name=e-itmonth-drmaster">
+                                                <button
+                                                        class="add-to-cart ml-1 px-2 rounded text-tl_blue hover:text-white hover:bg-tl_blue bg-gray-200"
+                                                        type="submit">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </button>
+                                                <input type="hidden" name="authenticity_token"
+                                                       value="lp8q2xE07IMljlhWA6PF1YfUveUL5LlM3YiYpDFrGrYbRm9MXOqVxXTUOdlW9Gq+hsLPa9xcAX64hrRZIwd0Xg=="/>
+                                            </form>
+                                        </div>
+
+                                        <strong class="title">
+                                            <a title="0 門檻！0 負擔！9 天秒懂大數據 &amp; AI 用語（iT邦幫忙鐵人賽系列書）"
+                                               href="/products/9789864343959?list_name=e-itmonth-drmaster">0 門檻！0
+                                                負擔！9 天秒懂大數據 &amp; AI 用語（iT邦幫忙鐵人賽系列書）</a>
+                                        </strong>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </section>
+
+                </div>
+
+            </div>
+
+            <div class="content">
+                <h2>
+                    熱門商品
+                </h2>
+                <div class="book-list book-list-carousel">
+                    <div class="list-wrapper">
+                        <ul>
+
+                            <li class="single-book">
+                                <a class="cover" href="/products/9789862802366?list_name=lv">
+
+                                    <img alt="C 程式設計藝術, 7/e (國際中文版) (附部分內容光碟) (C How to Program, 7/e (IE-Paperback))-cover"
+                                         loading="lazy"
+                                         src="https://cf-assets1.tenlong.com.tw/images/78249/medium/06146017.jpg"/>
+
+
+                                </a>
+                                <div class="pricing">
+                                    <del>$780</del>
+
+                                    $702
+                                    <form class="button_to" method="post"
+                                          action="/cart?id=9789862802366&amp;list_name=lv">
+                                        <button
+                                                class="add-to-cart ml-1 px-2 rounded text-tl_blue hover:text-white hover:bg-tl_blue bg-gray-200"
+                                                type="submit">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </button>
+                                        <input type="hidden" name="authenticity_token"
+                                               value="pXYcH8MiNKiJGZB53POWE3fqrha2oqDxvDHVQARbkFcor1mIjvxN7thD8faJpDl4dvzcmGEaGMPZP/m9Fjf+vw=="/>
+                                    </form>
+                                </div>
+
+                                <strong class="title">
+                                    <a title="C 程式設計藝術, 7/e (國際中文版) (附部分內容光碟) (C How to Program, 7/e (IE-Paperback))"
+                                       href="/products/9789862802366?list_name=lv">C 程式設計藝術, 7/e (國際中文版) (附部分內容光碟)
+                                        (C How to Program, 7/e (IE-Paperback))</a>
+                                </strong>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div><!-- end main-block -->
+    </div>
+    <!-- end center-container -->
+
+
+    <footer class="page-footer">
+        <div class="center-container">
+            <ul>
+                <li>
+                    <a href="">Facebook
+                        粉絲專頁</a>
+                </li>
+                <li>
+                    <a href="/faq">客服與FAQ</a>
+                </li>
+                <li>
+                    <a href="/about">連絡我們</a>
+                </li>
+                <li>
+                    <a href="/privacy">隱私權政策</a>
+                </li>
+                <li>
+                    <a href="/terms">服務條款</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</div>
+
+</body>
+
+</html>

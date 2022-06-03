@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/login.css">
+    <style>
+        .mid {
+            justify-content: center;
+        }
+
+        .btn_style {
+            color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-box">
+        <h2>會員登入</h2>
+        <form method="post" action="/login">
+            <div class="user-box">
+                <div class="form-group row">
+                    <input type="text" id="username" name="username" required>
+                    <label for="user_id">使用者名稱:</label>
+                </div>
+            </div>
+            <div class="user-box">
+                <div class="form-group row">
+                    <input type="password" id="password" name="password" required>
+                    <label for="password">密碼:</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn_style">登入</button>
+            </div>
+
+        </form>
+    </div>
+</body>
+
+</html>
