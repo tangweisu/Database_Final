@@ -4,7 +4,7 @@
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# product: http://ogp.me/ns/product#">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>書籍</title>
+    <title>書店</title>
     <meta name="csrf-param" content="authenticity_token" />
     <meta name="csrf-token"
         content="YBOz0Fa6Pq7fuxazfBtx5zFXptj9dFknqDoTP2eeBu95fULUrYEvpYMODRey1w7lWfUhSfZW0Gv193Vhh3yyew==" />
@@ -30,6 +30,8 @@
 
 
 </head>
+
+
 
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -70,8 +72,8 @@
                             <span style="color: white;">分類</span>
                         </a>
                         <ul class="category-list text-tl_blue">
-                            <li><a href="/categories">CD</a></li>
-                            <li><a href="/categories/data-science">書籍</a></li>
+                            <li><a href="{{ url_for('CDPage',username=username) }}">CD</a></li>
+                            <li><a href="{{ url_for('BookPage',username=username) }}">書籍</a></li>
 
                         </ul>
                     </li>
@@ -88,10 +90,9 @@
                     </li>
                     <div style="padding-right: 25px;"></div>
                     <li class="">
-                        <a href="{{ url_for('ShoppingCart',username=username) }}">
-                            <span class="hidden sm:inline-block"><i class="fa fa-shopping-cart "></i></span>
-                            <i class="cart-quantity text-white">0</i>
-                            <span class="hidden xl:inline-block" style="color: white">購物車</span>
+                        <a href="{{ url_for('register') }}">
+                            <span class="hidden sm:inline-block"><i class="fa fa-user-plus"></i></span>
+                            <span class="hidden xl:inline-block" style="color: white">註冊成為會員</span>
                         </a>
                     </li>
                 </ul>
@@ -113,13 +114,14 @@
 
                     <div class="content">
 
-                        <h2>書籍</h2>
+                        <h2>全部商品</h2>
                         <div class="book-list book-list-event">
                             <tbody>
-                                {% for i in Blist %}
+                                {% for i in AllProduct %}
                                 <h1>Product Name: {{ i.ProductName }}</h1>
                                 <b>Price : {{ i.Price }}</b>
-                                {% endfor %}
+                                <b>owner : {{ i.username }}
+                                    {% endfor %}
                             </tbody>
 
                         </div>

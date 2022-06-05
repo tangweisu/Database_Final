@@ -1,10 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<html lang="zh-Hant-TW" class="no-js">
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# product: http://ogp.me/ns/product#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>management product</title>
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token"
+        content="YBOz0Fa6Pq7fuxazfBtx5zFXptj9dFknqDoTP2eeBu95fULUrYEvpYMODRey1w7lWfUhSfZW0Gv193Vhh3yyew==" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/logo-simple.png">
+    <link rel="manifest" href="/manifest.json">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" media="all"
+        href="https://cf-www.tenlong.com.tw/assets/application-2979dc7c96516cafdb20a887fcc6a7881bc62096cdad4ca2eaa095d9bf0fab06.css" />
+
+    <script
+        src="https://cf-www.tenlong.com.tw/assets/application-0ad8fcd740aaa70862c7ed449bf3d27ae7f55d2b6bd29a2924be8ec2339c4a72.js"></script>
+    <link rel="stylesheet" media="screen" href="https://cf-www.tenlong.com.tw/packs/css/application-f2749583.css" />
+    <script src="https://cf-www.tenlong.com.tw/packs/js/application-6cdf20a78029f6b03d6b.js"></script>
+
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=557213394477621&ev=PageView&noscript=1" /></noscript>
+    <style>
+        .product_list {
+            width: auto;
+            margin: 5px 300px;
+            border: 1px dashed black;
+        }
+
+        p {
+            font-size: 50px;
+            text-align: center;
+        }
+    </style>
+
 </head>
+
 <body>
-{{ productdata }}
+    <nav class="center-container">
+        <nav class="grid grid-cols-12 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-800 w-full items-center"
+            style="padding-left: 100px;">
+
+            <a href="" style="color: white; line-height: 50px;">就是書店</a>
+            <div style="padding-right: 25px;"></div>
+
+
+        </nav>
+    </nav>
+
+    <p>management product</p>
+    <p style="font-size: 40px;padding-top: 5px;">產品列表:</p>
+    <div style="height: 10px;"></div>
+    <div class="product_list">
+        {{ productdata }}
+    </div>
 </body>
+
 </html>

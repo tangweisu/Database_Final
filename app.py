@@ -26,7 +26,7 @@ DashBoard
 
 @app.route('/')
 def index():
-    return render_template('home.html')
+    return render_template('loadhome.html')
 
 
 '''
@@ -42,7 +42,7 @@ def home(username):
 
     for i in data:
         AllProduct.append(i)
-    return render_template('home.html', AllProduct=AllProduct,username=username)
+    return render_template('home.html', AllProduct=AllProduct, username=username)
 
 
 '''
@@ -51,14 +51,14 @@ CD Page
 
 
 @app.route('/CD/<string:username>')
-def CDPage():
+def CDPage(username):
     cursor.execute("SELECT * FROM CD")
     CDdata = cursor.fetchall()
 
     CDlist = list()
     for i in CDdata:
         CDlist.append(i)
-    return render_template('CDPage.html', CDlist=CDlist)
+    return render_template('CDPage.html', CDlist=CDlist, username=username)
 
 
 '''
@@ -67,14 +67,14 @@ Book Page
 
 
 @app.route('/Book/<string:username>')
-def BookPage():
+def BookPage(username):
     cursor.execute("SELECT * FROM BOOK")
     BookData = cursor.fetchall()
 
     Blist = list()
     for i in BookData:
         Blist.append(i)
-    return render_template('Bookpage.html', Blist=Blist)
+    return render_template('Bookpage.html', Blist=Blist, username=username)
 
 
 '''
@@ -94,7 +94,7 @@ def register():
         cursor.execute("INSERT INTO userdata (username, password) VALUES (%s,%s)", (username, hash_password,))
         cnx.commit()
         session['username'] = request.form['username']
-        return redirect(url_for('home'))
+        return redirect(url_for('home', username=username))
 
 
 '''
@@ -251,6 +251,11 @@ def management_user():
     cursor.execute("SELECT * FROM userdata")
     userdata = cursor.fetchall()
     return render_template('management_user.html', userdata=userdata)
+
+
+@app.route('/logout')
+def logout():
+    return render_template('loadhome.html')
 
 
 if __name__ == '__main__':
