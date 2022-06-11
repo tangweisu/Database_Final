@@ -7,6 +7,7 @@
 <body>
 <table class="table table-striped table-bordered table-hover">
     <h1>Username : {{ username }}</h1>
+    <h1>User's Product</h1>
     <tbody>
     {% for i in Plist %}
         <h1>ID: {{ i.ProductId }} | Product Name: {{ i.ProductName }}</h1>
@@ -14,8 +15,8 @@
     {% endfor %}
     </tbody>
 </table>
-<a href="{{ url_for('UploadProduct',username=username) }}">UploadProduct</a>
-<a href="{{ url_for('home',username=username) }}">Home</a>
-<a href="{{ url_for('ShoppingCart',username = username) }}">My Shopping Cart</a>
+<a href="{{ url_for('UploadProduct', username=username) }}">UploadProduct</a>
+<a href="{{ url_for('home', username=username) }}">Home</a>
+<a href="{{ url_for('ShoppingCart', username = username) }}">My Shopping Cart</a>
 </body>
 </html>

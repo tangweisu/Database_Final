@@ -1,4 +1,5 @@
 import os
+import random
 
 import bcrypt
 import mysql.connector
@@ -19,6 +20,10 @@ cursor = cnx.cursor(dictionary=True)
 app = Flask(__name__, template_folder='templates')
 app.config['SECRET_KEY'] = os.urandom(24)
 
+Discount = ''.join(random.sample(
+    ['z', 'y', 'x', 'w', 'v', 'u', 't', 's', 'r', 'q', 'p', 'o', 'n', 'm', 'l', 'k', 'j', 'i', 'h', 'g', 'f', 'e', 'd',
+     'c', 'b', 'a'], 7))
+
 '''
 DashBoard
 '''
@@ -26,7 +31,13 @@ DashBoard
 
 @app.route('/')
 def index():
-    return render_template('loadhome.html')
+    cursor.execute("SELECT * FROM product")
+    data = cursor.fetchall()
+    AllProduct = list()
+
+    for i in data:
+        AllProduct.append(i)
+    return render_template('loadhome.html', AllProduct=AllProduct)
 
 
 '''
@@ -123,9 +134,9 @@ def login():
                         session['username'] = user['username']
                         return redirect(url_for('home', username=username))
                 else:
-                    return "Error password and email not match"
+                    return render_template("login.html")
             else:
-                return "Error user not found"
+                return render_template("login.html")
     else:
         return render_template("login.html")
 
@@ -136,9 +147,10 @@ upload product page
 
 
 @app.route('/UploadProduct/<string:username>', methods=['GET', 'POST'])
-def UploadProduct():
+def UploadProduct(username):
     if request.method == 'GET':
-        return render_template("uploadproduct.html")
+        print('ok')
+        return render_template("uploadproduct.html", username=username)
     else:
         ProductType = request.form['product']
         if ProductType == 'cd':
@@ -152,25 +164,37 @@ def UploadProduct():
                 (ProductName, price, description, username))
             cnx.commit()
 
-            session['productname'] = ProductName
-            session['username'] = username
-            return redirect(url_for('profile', username=username))
-        elif ProductType == 'book':
-            ProductName = request.form['productname']
-            price = request.form['price']
-            description = request.form['description']
-            username = request.form['username']
-
             cursor.execute(
-                'INSERT INTO BOOK (ProductName,Price, Description, username) VALUES (%s,%s,%s,%s)',
+                'INSERT INTO product (ProductName,Price, Description, username) VALUES (%s,%s,%s,%s)',
                 (ProductName, price, description, username))
             cnx.commit()
 
             session['productname'] = ProductName
             session['username'] = username
+            print('ok')
+            return redirect(url_for('profile', username=username))
+
+        elif ProductType == 'book':
+            ProductName = request.form['productname']
+            price = request.form['price']
+            description = request.form['description']
+            username = request.form['username']
+            cursor.execute(
+                'INSERT INTO BOOK (ProductName,Price, Description, username) VALUES (%s,%s,%s,%s)',
+                (ProductName, price, description, username))
+            cnx.commit()
+            cursor.execute(
+                'INSERT INTO product (ProductName,Price, Description,username) VALUES (%s,%s,%s,%s)',
+                (ProductName, price, description, username))
+            cnx.commit()
+
+            session['productname'] = ProductName
+            session['username'] = username
+            print('okkkk')
             return redirect(url_for('profile', username=username))
         else:
             msg = 'Upload Fail'
+            print('ok')
             return redirect(url_for('profile', username=username, msg=msg))
 
 
@@ -186,9 +210,13 @@ def product(username, ProductId):
     productName = productData['ProductName']
     productId = productData['ProductId']
     productPrice = productData['Price']
+    description = productData['Description']
+    owner = productData['username']
     username = username
+
     if request.method == 'GET':
-        return render_template("productpage.html", productId=ProductId, productData=productData)
+        return render_template("productpage.html", productName=productName, productId=ProductId,
+                               productPrice=productPrice, description=description, owner=owner)
     else:
         add = request.form['add']
         if add == 'add':
@@ -197,7 +225,7 @@ def product(username, ProductId):
                 (productId, productName, productPrice, username))
             cnx.commit()
             session['ProductId'] = ProductId
-            return redirect(url_for('product', ProductId=ProductId, username=username))
+            return redirect(url_for('product', username=username, ProductId=ProductId))
 
 
 '''
@@ -207,11 +235,17 @@ user profile
 
 @app.route('/profile/<string:username>')
 def profile(username):
-    cursor.execute('SELECT * FROM product WHERE username=%s', (username,))
+    cursor.execute('SELECT * FROM CD WHERE username=%s', (username,))
     content = cursor.fetchall()
 
     Plist = list()
     for i in content:
+        Plist.append(i)
+
+    cursor.execute('SELECT * FROM BOOK WHERE username=%s', (username,))
+    content2 = cursor.fetchall()
+
+    for i in content2:
         Plist.append(i)
     session['username'] = username
     return render_template('profile.html', Plist=Plist, username=username)
@@ -221,7 +255,12 @@ def profile(username):
 def ShoppingCart(username):
     cursor.execute('SELECT * FROM Scart WHERE username=%s', (username,))
     ProductContent = cursor.fetchall()
-
+    '''
+    discount = request.form['discount']
+    if discount == Discount:
+        price = price*0.8
+            
+    '''
     ProductList = list()
     print(ProductContent)
     for i in ProductContent:
@@ -243,19 +282,21 @@ def management():
 def management_product():
     cursor.execute("SELECT * FROM product")
     productdata = cursor.fetchall()
-    return render_template('management_product.html', productdata=productdata)
+
+    plist = list()
+    for i in productdata:
+        plist.append(i)
+    return render_template('management_product.html', plist=plist)
 
 
 @app.route('/management/user')
 def management_user():
     cursor.execute("SELECT * FROM userdata")
     userdata = cursor.fetchall()
-    return render_template('management_user.html', userdata=userdata)
-
-
-@app.route('/logout')
-def logout():
-    return render_template('loadhome.html')
+    ulist = list()
+    for i in userdata:
+        ulist.append(i)
+    return render_template('management_user.html', ulist=ulist)
 
 
 if __name__ == '__main__':

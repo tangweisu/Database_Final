@@ -81,12 +81,6 @@
 
             <ul class="right-menu col-span-4 sm:col-span-3 flex justify-evenly text-white ">
 
-                <li class="log-in">
-                    <a href="{{ url_for('login') }}">
-                        <i class="fa fa-user-plus"></i>
-                        <span class="hidden xl:inline-block" style="color: white;">會員登入</span>
-                    </a>
-                </li>
                 <div style="padding-right: 25px;"></div>
                 <li class="">
                     <a href="{{ url_for('ShoppingCart',username=username) }}">
@@ -103,7 +97,7 @@
                 </li>
             </ul>
             <li class="">
-                <a href="{{ url_for('logout') }}">
+                <a href="{{ url_for('index') }}">
                     <span class="hidden sm:inline-block"><i class="fa fa-sign-out "></i></span>
                     <span class="hidden xl:inline-block" style="color: white">登出</span>
                 </a>
@@ -130,9 +124,9 @@
                     <div class="book-list book-list-event">
                         <tbody>
                         {% for i in AllProduct %}
-                            <h1>Product Name: {{ i.ProductName }}</h1>
+                            <h1><a href="http://127.0.0.1:5000/{{ username }}/products/{{ i.ProductId }}">Product Name: {{ i.ProductName }}</a></h1>
                             <b>Price : {{ i.Price }}</b>
-                            <b>owner : {{ i.username }}
+                            <b>owner : {{ i.username }}</b>
                         {% endfor %}
                         </tbody>
 
