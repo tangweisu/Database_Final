@@ -60,7 +60,7 @@
 <div class="user_list">
     <tbody>
     {% for i in ulist %}
-        <h1>ID: {{ i.userId }} | Name: {{ i.username }} | Password : {{ i.password }}</h1>
+        <h1>ID: {{ i.userId }} | Name: {{ i.username }} | Password : {{ i.password }} | <button value="del">刪除</button></h1>
     {% endfor %}
     </tbody>
 </div>

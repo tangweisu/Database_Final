@@ -60,7 +60,7 @@
 <div class="product_list">
     <tbody>
     {% for i in plist %}
-        <h1>ID: {{ i.ProductId }} | Name: {{ i.ProductName }} | Price : {{ i.Price }} | Owner: {{ i.username }} </h1>
+        <p><h1>ID: {{ i.ProductId }} | Name: {{ i.ProductName }} | Price : {{ i.Price }} | Owner: {{ i.username }} | <button value="del" name="del">刪除</button></h1></p>
     {% endfor %}
     </tbody>
 </div>

@@ -171,7 +171,6 @@ def UploadProduct(username):
 
             session['productname'] = ProductName
             session['username'] = username
-            print('ok')
             return redirect(url_for('profile', username=username))
 
         elif ProductType == 'book':
@@ -190,11 +189,9 @@ def UploadProduct(username):
 
             session['productname'] = ProductName
             session['username'] = username
-            print('okkkk')
             return redirect(url_for('profile', username=username))
         else:
             msg = 'Upload Fail'
-            print('ok')
             return redirect(url_for('profile', username=username, msg=msg))
 
 
@@ -229,24 +226,55 @@ def product(username, ProductId):
 
 
 '''
+edit product
+'''
+
+
+@app.route('/EditProduct/<string:username>/<int:productId>', methods=['POST', 'GET'])
+def EditProduct(username, productId):
+    cursor.execute('SELECT * FROM product WHERE ProductId=%s', (productId,))
+    productData = cursor.fetchone()
+    productName = productData['ProductName']
+    productId = productData['ProductId']
+    productPrice = productData['Price']
+    description = productData['Description']
+    username = username
+    if request.method == 'POST':
+        print('here')
+        Nproductname = request.form['productname']
+        Nprice = request.form['price']
+        Ndescription = request.form['description']
+        print(here)
+        if Nproductname != productName or NproductDname != '':
+            cursor.execute('UPDATE product SET ProductName=%s WHERE ProductId=%s', (Nproductname, productId,))
+            cnx.commit()
+        if Nprice != productPrice or Nprice != '':
+            cursor.execute('UPDATE product SET Price=%s WHERE ProductId=%s', (Nprice, productId,))
+            cnx.commit()
+        if Ndescription != description or Ndescription != '':
+            cursor.execute('UPDATE product SET Description=%s WHERE ProductId=%s', (Ndescription, productId,))
+            cnx.commit()
+        session['username'] = username
+        return redirect(url_for('profile', username=username))
+    else:
+        session['productId'] = productId
+        return render_template('EditProduct.html', productId=productId)
+
+
+'''
 user profile
 '''
 
 
 @app.route('/profile/<string:username>')
 def profile(username):
-    cursor.execute('SELECT * FROM CD WHERE username=%s', (username,))
+    cursor.execute('SELECT * FROM product WHERE username=%s', (username,))
     content = cursor.fetchall()
 
     Plist = list()
     for i in content:
         Plist.append(i)
 
-    cursor.execute('SELECT * FROM BOOK WHERE username=%s', (username,))
-    content2 = cursor.fetchall()
-
-    for i in content2:
-        Plist.append(i)
     session['username'] = username
     return render_template('profile.html', Plist=Plist, username=username)
 
@@ -254,13 +282,6 @@ def profile(username):
 @app.route('/shoppingCart/<string:username>')
 def ShoppingCart(username):
     cursor.execute('SELECT * FROM Scart WHERE username=%s', (username,))
-    ProductContent = cursor.fetchall()
-    '''
-    discount = request.form['discount']
-    if discount == Discount:
-        price = price*0.8
-            
-    '''
     ProductList = list()
     print(ProductContent)
     for i in ProductContent:
@@ -287,6 +308,17 @@ def management_product():
     for i in productdata:
         plist.append(i)
     return render_template('management_product.html', plist=plist)
+    '''
+        btn = request.form['del']
+        if btn == 'del':
+            cursor.execute(
+                'DELETE FROM product WHERE ProductId=%s',
+                (productId, productName, productPrice, username))
+            cnx.commit()
+            session['ProductId'] = ProductId
+            return redirect(url_for('product', username=username, ProductId=ProductId))
+  
+    '''
 
 
 @app.route('/management/user')

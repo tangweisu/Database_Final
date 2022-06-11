@@ -10,8 +10,7 @@
     <h1>User's Product</h1>
     <tbody>
     {% for i in Plist %}
-        <h1>ID: {{ i.ProductId }} | Product Name: {{ i.ProductName }}</h1>
-
+        <h1>ID: {{ i.ProductId }} | Product Name: {{ i.ProductName }} | Price : {{ i.Price }} | <a href="{{ url_for('EditProduct',username=username,productId=i.ProductId) }}">edit product</a></h1>
     {% endfor %}
     </tbody>
 </table>
