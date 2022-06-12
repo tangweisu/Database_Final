@@ -282,6 +282,7 @@ def profile(username):
 @app.route('/shoppingCart/<string:username>')
 def ShoppingCart(username):
     cursor.execute('SELECT * FROM Scart WHERE username=%s', (username,))
+    ProductContent = cursor.fetchall()
     ProductList = list()
     print(ProductContent)
     for i in ProductContent:
@@ -309,7 +310,7 @@ def management_product():
         plist.append(i)
     return render_template('management_product.html', plist=plist)
     '''
-        btn = request.form['del']
+            btn = request.form['del']
         if btn == 'del':
             cursor.execute(
                 'DELETE FROM product WHERE ProductId=%s',
@@ -317,7 +318,6 @@ def management_product():
             cnx.commit()
             session['ProductId'] = ProductId
             return redirect(url_for('product', username=username, ProductId=ProductId))
-  
     '''
 
 
