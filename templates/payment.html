@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OK!</title>
+</head>
+<body>
+<h1>再次確認您的訂單</h1>
+
+<tbody>
+{% for i in ProductList %}
+    <h1>Product Name: {{ i.ProductName }} | Price : {{ i.ProductPrice }}</h1>
+{% endfor %}
+</tbody>
+<h1><b>Total: {{ totalPrice }}</b></h1>
+<input class='popuptest' type="button" value="按我確認訂單">
+<p class='show'></p>
+
+<script>
+    var button = document.querySelector('.popuptest');
+    var showtxt = document.querySelector('.show');
+
+    function popup2(e) {
+        window.confirm('訂單確認');
+        if (confirm('再次確認訂單內容') == true) {
+            showtxt.innerHTML = '確認';
+        } else {
+            showtxt.innerHTML = '訂單有誤';
+        }
+    };
+    button.addEventListener('click', popup2);
+</script>
+<p><a href="{{ url_for('profile',username=username) }}">點我回到個人檔案</a></p>
+</body>
+</html>

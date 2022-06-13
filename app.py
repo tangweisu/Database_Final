@@ -5,6 +5,7 @@ import bcrypt
 import mysql.connector
 from flask import Flask, render_template, request, session, redirect, url_for
 
+
 config = {
     'user': 'root',
     'password': 'root',
@@ -19,10 +20,6 @@ cursor = cnx.cursor(dictionary=True)
 
 app = Flask(__name__, template_folder='templates')
 app.config['SECRET_KEY'] = os.urandom(24)
-
-Discount = ''.join(random.sample(
-    ['z', 'y', 'x', 'w', 'v', 'u', 't', 's', 'r', 'q', 'p', 'o', 'n', 'm', 'l', 'k', 'j', 'i', 'h', 'g', 'f', 'e', 'd',
-     'c', 'b', 'a'], 7))
 
 '''
 DashBoard
@@ -234,7 +231,9 @@ edit product
 def EditProduct(username, productId):
     cursor.execute('SELECT * FROM product WHERE ProductId=%s', (productId,))
     productData = cursor.fetchone()
+    print(productData)
     productName = productData['ProductName']
+    print(productName)
     productId = productData['ProductId']
     productPrice = productData['Price']
     description = productData['Description']
@@ -283,11 +282,32 @@ def profile(username):
 def ShoppingCart(username):
     cursor.execute('SELECT * FROM Scart WHERE username=%s', (username,))
     ProductContent = cursor.fetchall()
+    i = 0
+    sum = 0
+    while i < len(ProductContent):
+        sum = sum + int(ProductContent[i]['ProductPrice'])
+        i += 1
+
     ProductList = list()
-    print(ProductContent)
     for i in ProductContent:
         ProductList.append(i)
-    return render_template('UserSCart.html', username=username, ProductList=ProductList)
+    return render_template('UserSCart.html', username=username, ProductList=ProductList, totalPrice=sum)
+
+
+@app.route('/payment/<string:username>')
+def payment(username):
+    cursor.execute('SELECT * FROM Scart WHERE username=%s', (username,))
+    ProductContent = cursor.fetchall()
+    i = 0
+    sum = 0
+    while i < len(ProductContent):
+        sum = sum + int(ProductContent[i]['ProductPrice'])
+        i += 1
+
+    ProductList = list()
+    for i in ProductContent:
+        ProductList.append(i)
+    return render_template('payment.html', username=username, ProductList=ProductList, totalPrice=sum)
 
 
 '''
@@ -310,14 +330,14 @@ def management_product():
         plist.append(i)
     return render_template('management_product.html', plist=plist)
     '''
-            btn = request.form['del']
-        if btn == 'del':
-            cursor.execute(
+     btn = request.form['del']
+    if btn == 'del':
+        cursor.execute(
                 'DELETE FROM product WHERE ProductId=%s',
                 (productId, productName, productPrice, username))
-            cnx.commit()
-            session['ProductId'] = ProductId
-            return redirect(url_for('product', username=username, ProductId=ProductId))
+        cnx.commit()
+        session['ProductId'] = ProductId
+       
     '''
 
 
